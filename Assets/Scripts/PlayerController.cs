@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 3f;
 
