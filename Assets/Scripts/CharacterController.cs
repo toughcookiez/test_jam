@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CharacterController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
 
+    private Animator _animator;
+
+    private SpriteRenderer _spriteRenderer;
 
     private Rigidbody2D _rb;
 
@@ -54,6 +58,10 @@ public class CharacterController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
 
+        _animator = GetComponent<Animator>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
         playerControls.PlayerActions.Jump.performed += OnJump;
     }
 
@@ -64,8 +72,11 @@ public class CharacterController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (IsGrounded)
         {
+            _animator.SetBool("Grounded", false);
+            _animator.SetTrigger("Jump");
+            
             _rb.linearVelocityY = _jumpForce;
         }
     }
@@ -73,21 +84,22 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         Move();
-  
+        _animator.SetBool("Grounded", IsGrounded);
     }
 
-    public bool IsGrounded()
+    public bool IsGrounded
     {
-        if (Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _castDistance, _groundLayer))
+        get
         {
-            return true;
+            if (Physics2D.BoxCast(transform.position, _boxSize, 0, -transform.up, _castDistance, _groundLayer))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
-        {
-            return false;
-        }
-
-
     }
 
     private void OnDrawGizmos()
@@ -99,6 +111,23 @@ public class CharacterController : MonoBehaviour
     private void Move()
     {
         InputX = playerControls.PlayerActions.Move.ReadValue<float>();
+        if (_spriteRenderer != null)
+        {
+            if (InputX > 0)
+            {
+                _animator.SetBool("IsRunning", true);
+                _spriteRenderer.flipX = false;
+            }
+            else if (InputX < 0)
+            {
+                _animator.SetBool("IsRunning", true);
+                _spriteRenderer.flipX = true;
+            }
+            else if (InputX == 0)
+            {
+                _animator.SetBool("IsRunning", false);
+            }
+        }
 
         if (_rb != null)
         {
