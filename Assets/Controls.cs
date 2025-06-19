@@ -44,6 +44,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LightUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb7b8101-3f36-43dd-a775-d3dac0189906"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +99,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca20f389-cda3-4749-81bc-83d21e094413"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LightUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +120,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Move = m_PlayerActions.FindAction("Move", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerActions_LightUp = m_PlayerActions.FindAction("LightUp", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -168,12 +189,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
     private readonly InputAction m_PlayerActions_Move;
     private readonly InputAction m_PlayerActions_Jump;
+    private readonly InputAction m_PlayerActions_LightUp;
     public struct PlayerActionsActions
     {
         private @Controls m_Wrapper;
         public PlayerActionsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerActions_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
+        public InputAction @LightUp => m_Wrapper.m_PlayerActions_LightUp;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +212,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @LightUp.started += instance.OnLightUp;
+            @LightUp.performed += instance.OnLightUp;
+            @LightUp.canceled += instance.OnLightUp;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -199,6 +225,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @LightUp.started -= instance.OnLightUp;
+            @LightUp.performed -= instance.OnLightUp;
+            @LightUp.canceled -= instance.OnLightUp;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -220,5 +249,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnLightUp(InputAction.CallbackContext context);
     }
 }

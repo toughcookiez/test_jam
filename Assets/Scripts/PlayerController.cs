@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
@@ -31,6 +33,10 @@ public class PlayerController : MonoBehaviour
 
     public float _shadowTranstionTime;
 
+    [Header("Flashlight settings")]
+    [SerializeField] private int _flashlightCharges = 1;
+    [SerializeField] private float _flashlightDuration = 1f;
+    [SerializeField] private float _flashlightShadowAmount = 0;
 
 
 
@@ -79,10 +85,35 @@ public class PlayerController : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerControls.PlayerActions.Jump.performed += OnJump;
+
+        playerControls.PlayerActions.LightUp.performed += OnLightUp;
+    }
+
+    private void OnLightUp(InputAction.CallbackContext obj)
+    {
+        if (_flashlightCharges > 0 && _enabled)
+        {
+            _flashlightCharges--;
+            StartCoroutine(LightUp());
+        }
+    }
+
+    private IEnumerator LightUp()
+    {
+        float elpasedTime = 0;
+        while (elpasedTime < _flashlightDuration && _flashlightDuration > 0)
+        {
+            _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", _flashlightShadowAmount);
+            elpasedTime += Time.deltaTime;
+            yield return null;
+        }
+        _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", 64);
     }
 
     private void OnDestroy()
     {
+        playerControls.PlayerActions.LightUp.performed -= OnLightUp;
+
         playerControls.PlayerActions.Jump.performed -= OnJump;
     }
 
