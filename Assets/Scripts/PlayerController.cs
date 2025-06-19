@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -13,12 +14,25 @@ public class PlayerController : MonoBehaviour
     [Tooltip("all things that the player can stand on should be on this layer")]
     [SerializeField] private LayerMask _groundLayer;
 
+    private bool _enabled = false;
+
 
     private Animator _animator;
 
     private SpriteRenderer _spriteRenderer;
 
     private Rigidbody2D _rb;
+
+    [Header("Shadow settings")]
+
+    [SerializeField] private GameObject ShadowObject;
+
+    public SpriteRenderer _shadowSpriteRenderer;
+
+    public float _shadowTranstionTime;
+
+
+
 
     private float InputX;
 
@@ -56,9 +70,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();     
 
         _animator = GetComponent<Animator>();
+
+        _shadowSpriteRenderer = ShadowObject.GetComponent<SpriteRenderer>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -72,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded)
+        if (IsGrounded && _enabled)
         {
             _animator.SetBool("Grounded", false);
             _animator.SetTrigger("Jump");
@@ -83,8 +99,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!_enabled)
+        {
+            return;
+        }
         Move();
         _animator.SetBool("Grounded", IsGrounded);
+        _animator.SetBool("Enabled", _enabled);
     }
 
     public bool IsGrounded
@@ -100,6 +121,16 @@ public class PlayerController : MonoBehaviour
                 return false;
             }
         }
+    }
+
+    public bool Enabled { 
+        get { 
+            return _enabled; 
+        } 
+        set
+        {
+            _enabled = value;
+        } 
     }
 
     private void OnDrawGizmos()
