@@ -8,21 +8,9 @@ public class UImanager : MonoBehaviour
 
     public void StartPressed()
     {
-        StartCoroutine(ApplyShadows(controller._shadowTranstionTime));
+        StartCoroutine(controller.ApplyShadows());
     }
 
-    private IEnumerator ApplyShadows(float durationInSeconds)
-    {
-        float elpasedTime = 0;
-        while(elpasedTime < durationInSeconds && durationInSeconds > 0)
-        {
-            controller._shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(0, 64, elpasedTime / durationInSeconds));
-            elpasedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        controller._shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(0, 64, 1));
-        controller.Enabled = true;
-    }
+    
 
 }

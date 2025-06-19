@@ -98,6 +98,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public IEnumerator ApplyShadows()
+    {
+        float elpasedTime = 0;
+        while (elpasedTime < _shadowTranstionTime && _shadowTranstionTime > 0)
+        {
+            _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(0, 64, elpasedTime / _shadowTranstionTime));
+            elpasedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(0, 64, 1));
+        Enabled = true;
+    }
+
+    public IEnumerator DisapplyShadows()
+    {
+        Enabled = false;
+        float elpasedTime = 0;
+        while (elpasedTime < _shadowTranstionTime && _shadowTranstionTime > 0)
+        {
+            _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(64, 0, elpasedTime / _shadowTranstionTime));
+            elpasedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(64, 0, 1));
+        
+    }
+
     private IEnumerator LightUp()
     {
         float elpasedTime = 0;
@@ -130,13 +159,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _animator.SetBool("Grounded", IsGrounded);
+        _animator.SetBool("Enabled", _enabled);
         if (!_enabled)
         {
             return;
         }
         Move();
-        _animator.SetBool("Grounded", IsGrounded);
-        _animator.SetBool("Enabled", _enabled);
+        
+        
     }
 
     public bool IsGrounded
