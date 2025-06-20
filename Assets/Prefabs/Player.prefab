@@ -231,7 +231,7 @@ MonoBehaviour:
   _flashlightDuration: 1
   _flashlightShadowAmount: 0
   _castDistance: 0.5
-  _boxSize: {x: 0.55, y: 0.03}
+  _boxSize: {x: 0.49, y: 0.03}
 --- !u!95 &301089368607429361
 Animator:
   serializedVersion: 7
