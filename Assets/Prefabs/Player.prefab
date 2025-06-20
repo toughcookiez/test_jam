@@ -223,6 +223,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  _timeBeforeDeath: 0
   ShadowObject: {fileID: 4866407944744327494}
   _shadowSpriteRenderer: {fileID: 7956475778052302322}
   _shadowTranstionTime: 1.5
@@ -230,7 +231,7 @@ MonoBehaviour:
   _flashlightDuration: 1
   _flashlightShadowAmount: 0
   _castDistance: 0.5
-  _boxSize: {x: 0.55, y: 0.05}
+  _boxSize: {x: 0.55, y: 0.03}
 --- !u!95 &301089368607429361
 Animator:
   serializedVersion: 7
