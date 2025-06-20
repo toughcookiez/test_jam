@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("all things that the player can stand on should be on this layer")]
     [SerializeField] private LayerMask _groundLayer;
 
+    [SerializeField] private float _timeBeforeDeath = 3;
+
+    private Collider2D _collider;
+
     private bool _enabled = false;
 
 
@@ -96,6 +100,20 @@ public class PlayerController : MonoBehaviour
             _flashlightCharges--;
             StartCoroutine(LightUp());
         }
+    }
+
+    public void Die()
+    {
+        StartCoroutine(ExecuteDeath());
+    }
+
+    private IEnumerator ExecuteDeath()
+    {
+        _collider.enabled = false;
+        _rb.gravityScale = 0;
+        //death animation
+        yield return new WaitForSeconds(_timeBeforeDeath);
+        LevelManager.Instance.RestartLevel();
     }
 
     public IEnumerator ApplyShadows()
