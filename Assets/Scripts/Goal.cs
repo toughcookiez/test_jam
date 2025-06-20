@@ -12,6 +12,7 @@ public class Goal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            collision.GetComponent<Rigidbody2D>().linearVelocityX = 0;
             StartCoroutine(RevealRoom(collision));
         }
     }
