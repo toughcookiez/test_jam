@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public float _shadowTranstionTime;
 
     [Header("Flashlight settings")]
-    [SerializeField] private int _flashlightCharges = 1;
+    [SerializeField] public int _flashlightCharges = 1;
     [SerializeField] private float _flashlightDuration = 1f;
     [SerializeField] private float _flashlightShadowAmount = 0;
 
