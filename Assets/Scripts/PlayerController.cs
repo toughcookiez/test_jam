@@ -16,16 +16,12 @@ public class PlayerController : MonoBehaviour
     [Tooltip("all things that the player can stand on should be on this layer")]
     [SerializeField] private LayerMask _groundLayer;
 
-    [SerializeField] private float _timeBeforeDeath;
-
     private bool _enabled = false;
 
 
     private Animator _animator;
 
     private SpriteRenderer _spriteRenderer;
-
-    private Collider2D _collider;
 
     private Rigidbody2D _rb;
 
@@ -80,8 +76,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _collider = GetComponent<Collider2D>();
-
         _rb = GetComponent<Rigidbody2D>();     
 
         _animator = GetComponent<Animator>();
@@ -93,21 +87,6 @@ public class PlayerController : MonoBehaviour
         playerControls.PlayerActions.Jump.performed += OnJump;
 
         playerControls.PlayerActions.LightUp.performed += OnLightUp;
-    }
-
-    public void Die()
-    {
-        StartCoroutine(ExecuteDeath());
-    }
-
-    private IEnumerator ExecuteDeath()
-    {
-        //float OriginalGravityScale = _rb.gravityScale;
-        _rb.gravityScale = 0;
-        _collider.enabled = false;
-        //death anim
-        yield return new WaitForSeconds(_timeBeforeDeath);
-        LevelManager.Instance.RestartLevel();
     }
 
     private void OnLightUp(InputAction.CallbackContext obj)
