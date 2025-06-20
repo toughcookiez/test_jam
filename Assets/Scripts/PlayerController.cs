@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _collider = GetComponent<Collider2D>();
+
         _rb = GetComponent<Rigidbody2D>();     
 
         _animator = GetComponent<Animator>();
