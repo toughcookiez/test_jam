@@ -58,6 +58,11 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(LoadLevel(TargetScene));
     }
 
+    public void RestartLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
     IEnumerator LoadLevel(int sceneIndex)
     {
         isLoading = true;
