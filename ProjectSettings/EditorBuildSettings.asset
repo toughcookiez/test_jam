@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/title screen.unity
+    guid: 98f594430dbc1e042b1734dae3e3a1ca
+  - enabled: 1
     path: Assets/Scenes/Level01.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Level02.unity
     guid: aabe5134dc140e94091b3989b87bdf50
+  - enabled: 1
+    path: Assets/Scenes/Level03.unity
+    guid: bf727d8e45f44d54b85587bb6d5c1d93
+  - enabled: 1
+    path: Assets/Scenes/credits.unity
+    guid: 10cab11a79b2a184883d3ce771c377f2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

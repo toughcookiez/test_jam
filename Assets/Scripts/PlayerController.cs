@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public float _shadowTranstionTime;
 
     [Header("Flashlight settings")]
-    [SerializeField] private int _flashlightCharges = 1;
+    [SerializeField] public int _flashlightCharges = 1;
     [SerializeField] private float _flashlightDuration = 1f;
     [SerializeField] private float _flashlightShadowAmount = 0;
 
@@ -149,14 +149,25 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator LightUp()
     {
+        _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", 0);
+
         float elpasedTime = 0;
         while (elpasedTime < _flashlightDuration && _flashlightDuration > 0)
         {
-            _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", _flashlightShadowAmount);
             elpasedTime += Time.deltaTime;
             yield return null;
         }
-        _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", 64);
+
+        elpasedTime = 0;
+        float dimDuration = _flashlightDuration / 2;
+        while (elpasedTime < dimDuration && _flashlightDuration > 0)
+        {
+            _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(0, 64, elpasedTime / dimDuration));
+            elpasedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _shadowSpriteRenderer.material.SetFloat("_DarknessStrength", Mathf.Lerp(0, 64, 1));
     }
 
     private void OnDestroy()
