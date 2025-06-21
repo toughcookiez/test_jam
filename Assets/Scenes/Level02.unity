@@ -119,6 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1001 &158848147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,6 +177,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b475f6ea1cdcd47a46eb312a8cb302, type: 3}
+=======
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
 --- !u!4 &245519291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6951887384728836804, guid: d890ce2852a796f4f950149fc7e2a9c4, type: 3}
@@ -547,10 +550,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3695075036466260413, guid: d890ce2852a796f4f950149fc7e2a9c4, type: 3}
       propertyPath: _targetSceneIndex
+<<<<<<< HEAD
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3695075036466260413, guid: d890ce2852a796f4f950149fc7e2a9c4, type: 3}
       propertyPath: _timeBeforeTransition
+=======
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6876229395635855479, guid: d890ce2852a796f4f950149fc7e2a9c4, type: 3}
@@ -10879,4 +10885,7 @@ SceneRoots:
   - {fileID: 9104284920874046887}
   - {fileID: 1721228630}
   - {fileID: 1778865816}
+<<<<<<< HEAD
   - {fileID: 158848147}
+=======
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126

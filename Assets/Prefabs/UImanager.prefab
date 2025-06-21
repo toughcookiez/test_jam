@@ -34,6 +34,10 @@ RectTransform:
   m_Children:
   - {fileID: 8276271781641197841}
   - {fileID: 9208692601061743360}
+<<<<<<< HEAD
+=======
+  - {fileID: 8742897930277135722}
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
   - {fileID: 3072399696237276592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -369,15 +373,25 @@ RectTransform:
   m_GameObject: {fileID: 2853336088273234184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
   m_LocalScale: {x: 0.58462, y: 0.58462, z: 0.58462}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8742897930277135722}
+=======
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
   m_Father: {fileID: 1572554272207926618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -181, y: 381}
+=======
+  m_AnchoredPosition: {x: -44.72, y: 13.38}
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
   m_SizeDelta: {x: 70, y: 90}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4142150593944257098
@@ -443,16 +457,28 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8826625515994105538}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 3072399696237276592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 480, y: -11}
+=======
+  m_Father: {fileID: 1572554272207926618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 114.5, y: -15.96}
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
   m_SizeDelta: {x: 455.485, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &582190455385755828
@@ -510,8 +536,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
+<<<<<<< HEAD
   m_fontSize: 24
   m_fontSizeBase: 24
+=======
+  m_fontSize: 27
+  m_fontSizeBase: 27
+>>>>>>> 9514e2fd3135c3548ff37d60222d6d00512a0126
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
